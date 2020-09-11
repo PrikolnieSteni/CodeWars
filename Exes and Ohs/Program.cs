@@ -9,7 +9,6 @@ namespace Exes_and_Ohs
         public static bool XO(string input)
         {
             int[] values = { 0, 0 };
-            bool return_value = false;
             for (int i = 0; i < input.Length; i++)
             {
                 switch (input[i].ToString().ToLower())
@@ -18,11 +17,7 @@ namespace Exes_and_Ohs
                     case "o": values[1]++; break;
                 }
             }
-            if(values[0] == values[1] || (values[0] == 0 && values[1] == 0))
-            {
-                return_value = true;
-            }
-            return return_value;
+            return values[0] == values[1];
         }
         static void Main(string[] args)
         {
