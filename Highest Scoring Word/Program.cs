@@ -1,27 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 
 namespace Highest_Scoring_Word
 {
     class Program
     {
-        private static string RemoveSpace(string value)
+        public static Dictionary<char, int> Count(string str)
         {
-            value = value.Replace(" ", "");
-            return value;
-        }
-        public static bool Feast(string beast, string dish)
-        {
-            if (RemoveSpace(beast).EndsWith(dish[dish.Length-1]) == true && RemoveSpace(beast).StartsWith(dish[0]) == true)
+            Dictionary<char, int> CountCharacters = new Dictionary<char, int>();
+            string new_str = default;
+            foreach (var value in str)
             {
-                return true;
-            }
-            return false;
+                int count = str.Count(f => f ==value);
+                new_str += value.ToString();
+                if (new_str.Count(f=>f == value) <= 1)
+                {
+                    CountCharacters.Add(value, count);
+                }
+            }   
+            return CountCharacters;
+            // return str.GroupBy(c => c).ToDictionary(g => g.Key, g => g.Count());
         }
 
         static void Main(string[] args)
         {
-            Console.WriteLine(Feast("great blue heron", "garlic naan"));
+            Console.WriteLine(Count("aabbbbb"));
         }
     }
 }
